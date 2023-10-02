@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:running_app/core/utils/constants.dart';
 import 'package:running_app/features/log_in/presentation/widgets/log_in_view_body.dart';
-import 'package:running_app/features/sign_up/presentation/widgets/sign_up_view_body.dart';
 
 class LogInView extends StatelessWidget {
   const LogInView({super.key});

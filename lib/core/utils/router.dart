@@ -7,7 +7,7 @@ import 'package:running_app/features/sign_up/presentation/views/sign_up_view.dar
 abstract class AppRouter {
   static const kRunview = '/runview';
   static const kLoginView = '/loginView';
-  static const ksignupView = '/signinView';
+  static const ksignupView = '/signUpView';
   static final router = GoRouter(
     routes: <RouteBase>[
       GoRoute(

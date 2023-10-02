@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:running_app/core/utils/router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:running_app/features/sign_up/presentation/manager/auth/auth_bloc.dart';
+import 'package:running_app/manager/refresh/refresh_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,9 +25,9 @@ class RunApp extends StatelessWidget {
         BlocProvider(
           create: (context) => SignUpBloc(),
         ),
-        // BlocProvider(
-        //   create: (context) => SubjectBloc(),
-        // ),
+        BlocProvider(
+          create: (context) => RefreshCubit(),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
