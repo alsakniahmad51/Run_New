@@ -9,19 +9,14 @@ final class AuthInitial extends SignUpState {}
 
 final class SignUpInitial extends SignUpState {}
 
-final class SignUpLoading extends SignUpState {
-  bool loading;
-  SignUpLoading({required this.loading});
-}
+final class SignUpLoading extends SignUpState {}
 
-final class SignUpSuccess extends SignUpState {
-  bool loading;
-  SignUpSuccess({required this.loading});
-}
+final class SignUpSuccess extends SignUpState {}
 
 final class SignUpFailure extends SignUpState {
   String errmaessage;
-  bool loading;
 
-  SignUpFailure({required this.errmaessage, required this.loading});
+  SignUpFailure({
+    required this.errmaessage,
+  });
 }

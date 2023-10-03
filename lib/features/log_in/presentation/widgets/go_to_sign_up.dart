@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:running_app/core/utils/router.dart';
 import 'package:running_app/core/utils/styles.dart';
+import 'package:running_app/manager/refresh/refresh_cubit.dart';
 
 class GoToSignUp extends StatelessWidget {
   const GoToSignUp({
@@ -19,6 +21,10 @@ class GoToSignUp extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
+            BlocProvider.of<RefreshCubit>(context)
+                // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
+                .emit(RefresRebuild());
+            GoRouter.of(context).push(AppRouter.ksignupView);
             GoRouter.of(context).push(AppRouter.ksignupView);
           },
           child: Text(

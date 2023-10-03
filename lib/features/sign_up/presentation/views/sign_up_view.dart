@@ -15,6 +15,8 @@ class SiginUpView extends StatelessWidget {
     return BlocBuilder<SignUpBloc, SignUpState>(
       builder: (context, state) {
         return ModalProgressHUD(
+          opacity: 0,
+          blur: 1,
           progressIndicator: const SpinKitThreeBounce(
             color: Color(0xff7B61FF),
             size: 30,
