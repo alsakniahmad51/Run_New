@@ -18,14 +18,19 @@ class SignUpViewBody extends StatelessWidget {
   });
   String? email;
   String? password;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpBloc, SignUpState>(
       listener: (context, state) {
         if (state is SignUpLoading) {
+          BlocProvider.of<SignUpBloc>(context).loading = true;
         } else if (state is SignUpSuccess) {
+          BlocProvider.of<SignUpBloc>(context).loading = false;
         } else {
+          // ignore: avoid_print
           print("error from ahmad");
+          BlocProvider.of<SignUpBloc>(context).loading = false;
         }
       },
       builder: (context, state) {
@@ -62,6 +67,7 @@ class SignUpViewBody extends StatelessWidget {
                 ),
                 CustomButton(
                   onPressed: () {
+                    // BlocProvider.of<SignUpBloc>(context).loading = true;
                     BlocProvider.of<SignUpBloc>(context)
                         .add(SignUp(email: email, password: password));
                   },

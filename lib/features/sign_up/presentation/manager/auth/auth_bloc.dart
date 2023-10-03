@@ -8,25 +8,27 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
+  bool loading = false;
   SignUpBloc() : super(AuthInitial()) {
     on<SignUpEvent>((event, emit) async {
       if (event is SignUp) {
         try {
-          emit(SignUpLoading());
+          emit(SignUpLoading(loading: true));
           // ignore: unused_local_variable
           final credential =
               await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: event.email!,
             password: event.password!,
           );
-          emit(SignUpSuccess());
+          loading = false;
+          emit(SignUpSuccess(loading: true));
         } on FirebaseAuthException catch (e) {
           if (e.code == 'weak-password') {
             print('The password provided is too weak.');
           } else if (e.code == 'email-already-in-use') {
             print('The account already exists for that email.');
           }
-          emit(SignUpFailure(errmaessage: "hello world"));
+          emit(SignUpFailure(errmaessage: "hello world", loading: false));
         } catch (e) {
           print(e);
         }
