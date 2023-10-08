@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:running_app/core/utils/styles.dart';
-import 'package:running_app/features/sign_up/presentation/widgets/check.dart';
+import 'package:running_app/features/auth/presentation/widgets/custom_check.dart';
 
-class RememberSignUpMe extends StatelessWidget {
-  const RememberSignUpMe({
+class RememberAuthMe extends StatelessWidget {
+  const RememberAuthMe({
     super.key,
   });
 
@@ -12,7 +12,7 @@ class RememberSignUpMe extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const CustomCheckBox(),
+        const CustomAuthCheckBox(),
         Padding(
           padding: const EdgeInsets.only(left: 6),
           child: Text(

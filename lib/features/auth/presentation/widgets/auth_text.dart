@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:running_app/core/utils/styles.dart';
 
-class SignUpText extends StatelessWidget {
-  const SignUpText({
-    super.key,
-  });
-
+class AuthText extends StatelessWidget {
+  const AuthText({super.key, required this.authtext});
+  final String authtext;
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(top: 88),
+    return Padding(
+      padding: const EdgeInsets.only(top: 88),
       child: Text(
-        "Sign Up",
+        authtext,
         style: Styles.textStyle21,
         textAlign: TextAlign.center,
       ),
     );
   }
 }
-
-
-// ignore: camel_case_types

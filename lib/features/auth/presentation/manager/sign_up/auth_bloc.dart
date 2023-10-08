@@ -27,20 +27,20 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           if (e.code == 'weak-password') {
             print('The password provided is too weak.');
             emit(SignUpFailure(
-              errmaessage: "hello world",
+              errmaessage: "The password provided is too weak.",
             ));
             loading = false;
           } else if (e.code == 'email-already-in-use') {
             print('The account already exists for that email.');
             emit(SignUpFailure(
-              errmaessage: "hello world",
+              errmaessage: "The account already exists for that email.",
             ));
             loading = false;
           }
         } catch (e) {
           print(e);
           emit(SignUpFailure(
-            errmaessage: "hello world",
+            errmaessage: "somthing was wrong",
           ));
           loading = false;
         }

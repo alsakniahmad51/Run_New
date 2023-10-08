@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:running_app/core/utils/router.dart';
 import 'package:running_app/core/utils/styles.dart';
-import 'package:running_app/features/Get_started/presentation/widgets/custom_button.dart';
+import 'package:running_app/core/helper/custom_button.dart';
 
 class GroupItems extends StatelessWidget {
   const GroupItems({

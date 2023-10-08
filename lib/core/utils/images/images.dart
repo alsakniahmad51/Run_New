@@ -7,4 +7,5 @@ abstract class ImagePath {
   static const String google = "assets/images/google_logo.svg";
   static const String face = "assets/images/face_logo.svg";
   static const String twietter = "assets/images/twietter_logo.svg";
+  static const String account = "assets/images/account.svg";
 }

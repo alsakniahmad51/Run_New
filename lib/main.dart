@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:running_app/core/utils/router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:running_app/features/sign_up/presentation/manager/auth/auth_bloc.dart';
+import 'package:running_app/features/auth/presentation/manager/sign_up/auth_bloc.dart';
 import 'package:running_app/manager/refresh/refresh_cubit.dart';
 
 void main() async {

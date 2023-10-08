@@ -32,16 +32,12 @@ class RunView extends StatelessWidget {
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onPressed: () {
-                    GoRouter.of(context).replace(AppRouter.kLoginView);
+                    BlocProvider.of<RefreshCubit>(context)
+                        // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
+                        .emit(RefresRebuild());
+                    GoRouter.of(context).push(AppRouter.ksignupView);
                   },
-                  child: GestureDetector(
-                      onTap: () {
-                        BlocProvider.of<RefreshCubit>(context)
-                            // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
-                            .emit(RefresRebuild());
-                        GoRouter.of(context).push(AppRouter.ksignupView);
-                      },
-                      child: const Text("Skip")),
+                  child: const Text("Skip"),
                 ),
               ],
             ),

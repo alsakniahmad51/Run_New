@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:running_app/core/utils/images/images.dart';
 
-class CustomDivider extends StatelessWidget {
-  const CustomDivider({
+class CustomAuthDivider extends StatelessWidget {
+  const CustomAuthDivider({
     super.key,
   });
 
