@@ -2,9 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:running_app/core/helper/custom_button.dart';
 import 'package:running_app/core/utils/constants.dart';
+import 'package:running_app/core/utils/images/images.dart';
 import 'package:running_app/core/utils/router.dart';
 import 'package:running_app/core/utils/styles.dart';
 import 'package:running_app/features/auth/presentation/manager/sign_up/auth_bloc.dart';
@@ -51,62 +53,15 @@ class _AuthViewBodyState extends State<AuthViewBody> {
           BlocProvider.of<SignUpBloc>(context).loading = true;
         } else if (state is SignUpSuccess) {
           BlocProvider.of<SignUpBloc>(context).loading = false;
+          setState(() {
+            alertDialogSuccess(context, state);
+          });
         } else if (state is SignUpFailure) {
           // ignore: avoid_print
           print("error from ahmad");
           BlocProvider.of<SignUpBloc>(context).loading = false;
           return setState(() {
-            showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                child: AlertDialog(
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(24.0),
-                    ),
-                  ),
-                  backgroundColor: kPrimeryColor,
-                  title: const Icon(Icons.block, color: Colors.red, size: 50),
-                  content: SizedBox(
-                    height: 100,
-                    child: Column(
-                      children: [
-                        // Icon(Icons.block, color: Colors.red, size: 50),
-
-                        const Text(
-                          'Authentecation Error',
-                          style: Styles.textStyle21,
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        Text(
-                          "${state.errmaessage};",
-                          style: Styles.textStyle14,
-                        )
-                      ],
-                    ),
-                  ),
-                  actions: <Widget>[
-                    Center(
-                      child: SizedBox(
-                        width: 300,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              bottom: 32, right: 10, left: 10),
-                          child: CustomButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              textButton: "Ok"),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
+            alertDialogError(context, state);
           });
         } else {
           CustomButton(onPressed: () {}, textButton: "textButton");
@@ -179,4 +134,118 @@ class _AuthViewBodyState extends State<AuthViewBody> {
       },
     );
   }
+
+  Future<String?> alertDialogError(
+    BuildContext context,
+    SignUpFailure state,
+  ) {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        child: AlertDialog(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(24.0),
+            ),
+          ),
+          backgroundColor: kPrimeryColor,
+          title: const Icon(Icons.block, color: Colors.red, size: 50),
+          content: SizedBox(
+            height: 100,
+            child: Column(
+              children: [
+                // Icon(Icons.block, color: Colors.red, size: 50),
+
+                const Text(
+                  'Authentecation Error',
+                  style: Styles.textStyle21,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "${state.errmaessage};",
+                  style: Styles.textStyle14,
+                )
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            Center(
+              child: SizedBox(
+                width: 300,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(bottom: 32, right: 10, left: 10),
+                  child: CustomButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      textButton: "Ok"),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Future<String?> alertDialogSuccess(
+  BuildContext context,
+  SignUpSuccess state,
+) {
+  return showDialog<String>(
+    context: context,
+    builder: (BuildContext context) => BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+      child: AlertDialog(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(24.0),
+          ),
+        ),
+        backgroundColor: kPrimeryColor,
+        title: SvgPicture.asset(ImagePath.account),
+        content: const SizedBox(
+          height: 100,
+          child: Column(
+            children: [
+              // Icon(Icons.block, color: Colors.red, size: 50),
+
+              Text(
+                'Account Updated',
+                style: Styles.textStyle21,
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Text(
+                "Your account details have been successfully changed",
+                style: Styles.textStyle14,
+                textAlign: TextAlign.center,
+              )
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          Center(
+            child: SizedBox(
+              width: 300,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 32, right: 10, left: 10),
+                child: CustomButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    textButton: "Ok"),
+              ),
+            ),
+          )
+        ],
+      ),
+    ),
+  );
 }
